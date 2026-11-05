@@ -1,7 +1,5 @@
-// Make sure to edit the server code as well
-
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
+import { WebSocketServer, WebSocket } from "ws";
+const wss = new WebSocketServer({ port: 8080 });
 
 let userCount = 0;
 
@@ -53,5 +51,24 @@ wss.on('connection', (socket) => {
 
         updateUsers();
     });
+
+function updateUsers() {
+    const users = [];
+
+    wss.clients.forEach((client) => {
+        users.push(client.userId);
+    });
+
+    const userList = JSON.stringify({
+        type: "users",
+        users: users
+    });
+
+    wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(userList);
+        }
+    });
+}
 
 });
