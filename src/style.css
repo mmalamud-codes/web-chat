@@ -150,8 +150,6 @@ body {
 
     background: #0A84FF;
     border-bottom-right-radius: 10px;
-    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-    transform: rotate(-15deg);
     
     z-index: -1;
 }

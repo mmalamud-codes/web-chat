@@ -19,10 +19,19 @@ function App() {
             }));
         };
 
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+
+            if (data.type === "users") {
+                setOnline(data.users);
+            }
+        }
+
         socket.onclose = () => {
             console.log("Disconnected from server");
         }
-    })
+        
+    }, []);
 
     function handleSend() {
         if (message.trim() === '') return;
@@ -44,7 +53,11 @@ function App() {
         <div className="layout">
             <aside className="side-bar">
                 <section className="online-users">
-                    <ul id="user-list"></ul>
+                    <ul id="user-list">
+                        {online.map((user) => {
+                            <li key={user}>{user}</li>
+                        })}
+                    </ul>
                 </section>
             </aside>
 
