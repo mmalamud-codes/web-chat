@@ -6,18 +6,16 @@ let userCount = 0;
 wss.on('connection', (socket) => {
     userCount++;
 
-    const userId = `User${userCount}`;
+    const userId = `user${userCount}`;
     socket.userId = userId;
 
-
-    console.log(userId + "connected");
     socket.on("Error", console.error);
 
     socket.on("message", (data, isBinary) => {
         const message = JSON.parse(data.toString());
 
         if (message.type === "join") {
-            console.log(message.username + "connected");
+            console.log("\n" + userId + " connected");
             const users = [];
 
             wss.clients.forEach((client) => {
@@ -47,7 +45,7 @@ wss.on('connection', (socket) => {
     });
 
     socket.on("close", () => {
-        console.log(userId + "disconnected");
+        console.log("\n" + userId + " disconnected");
 
         updateUsers();
     });

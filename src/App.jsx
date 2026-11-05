@@ -4,18 +4,16 @@ import './style.css';
 function App() {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const [username] = useState()
     const [online, setOnline] = useState([]);
 
     useEffect(() => {
         const socket = new WebSocket("ws://localhost:8080");
 
         socket.onopen = () => {
-            console.log("Connected to server");
+            console.log("\nConnected to server");
 
             socket.send(JSON.stringify ({
-                type: "join",
-                username: username
+                type: "join"
             }));
         };
 
@@ -28,7 +26,7 @@ function App() {
         }
 
         socket.onclose = () => {
-            console.log("Disconnected from server");
+            console.log("\nDisconnected from server");
         }
         
     }, []);
@@ -55,7 +53,7 @@ function App() {
                 <section className="online-users">
                     <ul id="user-list">
                         {online.map((user) => {
-                            <li key={user}>{user}</li>
+                            return <li key={user}>{user}</li>
                         })}
                     </ul>
                 </section>
