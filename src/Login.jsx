@@ -1,11 +1,16 @@
 import './style2.css'
 
-export default function Login() {
-    return (
-        <div>
-            <input placeholder="Username" />
+export default function Login({ setLoggedIn }) {
 
-            <button>Login</button>
+    function getUser() {
+        setLoggedIn(true);
+    }
+
+    return (
+        <div className="login-card">
+            <input id="user-input" placeholder="Username"></input>
+
+            <button id="loginBtn" onClick={getUser}>Login</button>
         </div>
     );
 }

@@ -8,10 +8,6 @@ function App() {
     const [online, setOnline] = useState([]);
     const [loggedIn, setLoggedIn] = useState(false);
 
-    if (!loggedIn) {
-        return <Login />;
-    }
-
     useEffect(() => {
         const socket = new WebSocket("ws://localhost:8080");
 
@@ -36,6 +32,10 @@ function App() {
         }
         
     }, []);
+
+    if (!loggedIn) {
+        return <Login setLoggedIn={setLoggedIn} />;
+    }
 
     function handleSend() {
         if (message.trim() === '') return;
