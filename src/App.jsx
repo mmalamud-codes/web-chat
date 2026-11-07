@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import './style.css';
+import Login from './Login.jsx';
 
 function App() {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [online, setOnline] = useState([]);
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    if (!loggedIn) {
+        return <Login />;
+    }
 
     useEffect(() => {
         const socket = new WebSocket("ws://localhost:8080");
