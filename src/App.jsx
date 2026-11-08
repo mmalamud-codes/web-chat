@@ -6,16 +6,20 @@ function App() {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [online, setOnline] = useState([]);
+    const [username, setUsername] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
+        if (!loggedIn) return;
+
         const socket = new WebSocket("ws://localhost:8080");
 
         socket.onopen = () => {
             console.log("\nConnected to server");
 
             socket.send(JSON.stringify ({
-                type: "join"
+                type: "join",
+                username: username
             }));
         };
 
@@ -31,10 +35,12 @@ function App() {
             console.log("\nDisconnected from server");
         }
         
-    }, []);
+    }, [loggedIn, username]);
 
     if (!loggedIn) {
-        return <Login setLoggedIn={setLoggedIn} />;
+        return <Login setLoggedIn={setLoggedIn} 
+        setUsername={setUsername} 
+        />;
     }
 
     function handleSend() {

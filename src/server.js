@@ -1,25 +1,24 @@
 import { WebSocketServer, WebSocket } from "ws";
 const wss = new WebSocketServer({ port: 8080 });
 
-let userCount = 0;
-
 wss.on('connection', (socket) => {
-    userCount++;
+    socket.userId = null;
 
-    const userId = `user${userCount}`;
-    socket.userId = userId;
-
-    socket.on("Error", console.error);
+    socket.on("error", console.error);
 
     socket.on("message", (data, isBinary) => {
         const message = JSON.parse(data.toString());
 
         if (message.type === "join") {
-            console.log("\n" + userId + " connected");
+            socket.userId = message.username;
+
+            console.log("\n" + socket.userId + " connected");
             const users = [];
 
             wss.clients.forEach((client) => {
-                users.push(client.userId);
+                if (client.userId) {
+                    users.push(client.userId);
+                }
             });
 
             const userList = JSON.stringify({
@@ -45,7 +44,7 @@ wss.on('connection', (socket) => {
     });
 
     socket.on("close", () => {
-        console.log("\n" + userId + " disconnected");
+        console.log("\n" + socket.userId + " disconnected");
 
         updateUsers();
     });

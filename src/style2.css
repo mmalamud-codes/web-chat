@@ -9,12 +9,12 @@
     min-height: 100vh;
     margin: 0;
     padding: 0;
+}
 
+#root.login-page {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: #f4f6f8;
 }
 
 .login-card {
@@ -32,6 +32,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    place-items: center;
 }
 
 #user-input {
