@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#root {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f6f9;
@@ -12,16 +26,19 @@ body {
 
 .layout {
     display: flex;
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
     margin: 0;
 }
 
 .side-bar {
     width: 280px;
-    min-height: 100vh;
+    height: 100vh;
     flex-shrink: 0;
+
     background-color: #2cac5f;
     color: #2cac5f;
+
     padding: 25px 20px;
 }
 
@@ -40,23 +57,29 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+
     padding: 12px 10px;
     margin-bottom: 5px;
+
     border-radius: 8px;
+
     color: #e2e8f0;
     font-size: 14px;
 }
 
 #user-list li:hover {
-  background-color: #248b4c;
-    
+    background-color: #248b4c;
+    cursor: pointer;
+
 }
 
 .main-content {
     flex: 1;
     min-width: 0;
     height: 100vh;
+
     padding: 30px;
+
     background-color: #fbfbfb;
 
     display: flex;
@@ -74,7 +97,9 @@ body {
     flex: 1;
     min-height: 0;
     width: 100%;
+
     overflow-y: auto;
+
     padding: 20px 0;
 }
 
@@ -85,64 +110,81 @@ body {
 
     width: 100%;
     max-width: none;
+
     padding-top: 20px;
+
     flex-shrink: 0;
 }
 
 #messageInput {
     flex: 1;
     min-width: 0;
+
     padding: 13px 16px;
 
     border: 1px solid #cbd5e1;
     border-radius: 10px;
+
     background-color: #ffffff;
     color: #172233;
 
     font-family: inherit;
     font-size: 15px;
+
     outline: none;
 
     transition: border-color 0.2s;
 }
 
 #sendBtn {
-  padding: 13px 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: #2cac5f;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    padding: 13px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #2cac5f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s;
 }
 
 #sendBtn:hover {
-  background-color: #248b4c;
+    background-color: #248b4c;
 }
 
 .message {
     position: relative;
+
     display: table;
+
     width: fit-content;
     max-width: 65%;
+
     padding: 10px 16px;
     margin: 8px 12px;
 
     background: #0A84FF;
     color: white;
+
     font-size: 16px;
     line-height: 1.4;
 
     border-radius: 20px;
+
     overflow-wrap: anywhere;
 }
 
 .message::after {
     content: '';
+
     position: absolute;
+
     bottom: 2px;
     left: -3px;
 
@@ -150,15 +192,8 @@ body {
     height: 16px;
 
     background: #0A84FF;
+
     border-bottom-right-radius: 10px;
-    
+
     z-index: -1;
-}
-
-
-#root {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
 }

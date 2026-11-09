@@ -11,14 +11,16 @@ export default function Login({ setLoggedIn, setUsername }) {
     }
 
     return (
-        <div className="login-card">
-            <input id="user-input" 
-            placeholder="Username"
-            value={username}
-            onChange={(event) => setUsernameInput(event.target.value)} 
-            />
+        <div className="login-page">
+            <div className="login-card">
+                <input id="user-input" 
+                placeholder="Username"
+                value={username}
+                onChange={(event) => setUsernameInput(event.target.value)} 
+                />
 
-            <button id="loginBtn" onClick={handleClick}>Login</button>
+                <button id="loginBtn" onClick={handleClick}>Login</button>
+            </div>
         </div>
     );
 }
