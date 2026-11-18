@@ -55,16 +55,14 @@ function App() {
         setMessage('');
     }
 
-    function userUpdate(users) {
-        setOnline(users);
-    }
-
     return (
         <div className="layout">
             <aside className="side-bar">
                 <section className="online-users">
                     <ul id="user-list">
-                        {online.map((user) => {
+                        {online
+                        .filter((user) => user !== username)
+                        .map((user) => {
                             return <li key={user}>{user}</li>
                         })}
                     </ul>
